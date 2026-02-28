@@ -1,0 +1,11 @@
+[package]
+name = "talon-fetch"
+version = "1.0.0"
+edition = "2021"
+description = "HTTP requests and API calls"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"
+reqwest = "0.11"

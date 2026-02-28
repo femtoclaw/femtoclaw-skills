@@ -1,0 +1,10 @@
+[package]
+name = "talon-starter"
+version = "1.0.0"
+edition = "2021"
+description = "Starter template for new FemtoClaw projects"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"

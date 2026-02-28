@@ -1,0 +1,10 @@
+[package]
+name = "talon-demo"
+version = "1.0.0"
+edition = "2021"
+description = "Demo talon for testing and examples"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"

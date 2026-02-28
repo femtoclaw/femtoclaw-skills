@@ -1,0 +1,14 @@
+[package]
+name = "talon-aws"
+version = "1.0.0"
+edition = "2021"
+description = "AWS operations - EC2, S3, Lambda"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"
+rusoto-core = "0.48"
+rusoto-ec2 = "0.48"
+rusoto-s3 = "0.48"
+rusoto-lambda = "0.48"

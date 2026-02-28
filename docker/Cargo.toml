@@ -1,0 +1,11 @@
+[package]
+name = "talon-docker"
+version = "1.0.0"
+edition = "2021"
+description = "Docker container management"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"
+bollard = "0.15"

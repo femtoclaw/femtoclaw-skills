@@ -1,0 +1,11 @@
+[package]
+name = "talon-mongodb"
+version = "1.0.0"
+edition = "2021"
+description = "MongoDB operations - documents, collections, aggregations"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"
+mongodb = "2.0"

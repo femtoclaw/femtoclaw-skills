@@ -1,0 +1,10 @@
+[package]
+name = "talon-terminal"
+version = "1.0.0"
+edition = "2021"
+description = "Terminal and shell operations"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"

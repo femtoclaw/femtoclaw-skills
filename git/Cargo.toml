@@ -1,0 +1,11 @@
+[package]
+name = "talon-git"
+version = "1.0.0"
+edition = "2021"
+description = "Git operations - commit, push, pull, branch"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"
+git2 = "0.18"

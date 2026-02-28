@@ -1,0 +1,10 @@
+[package]
+name = "talon-postgres"
+version = "1.0.0"
+edition = "2021"
+description = "PostgreSQL database operations"
+authors = ["FemtoClaw Community"]
+license = "Apache-2.0"
+
+[dependencies]
+femtoclaw-sdk = "1.0"
