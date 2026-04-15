@@ -1,275 +1,109 @@
-# FemtoClaw Talons
+# 🐾 FemtoClaw Talons: The Ecosystem of Capabilities
 
-**Community-built Talons for FemtoClaw**
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-A collection of Talons created and maintained by the FemtoClaw Community. Talons extend FemtoClaw's capabilities with additional tools, integrations, and features.
+**FemtoClaw Talons** are high-level capability extensions that provide structured system integrations for the FemtoClaw runtime. While the core "Claws" (Shell, Net, FS) provide the fundamental execution substrate, Talons provide the specialized logic required to interact with cloud providers, communication platforms, databases, and enterprise software.
 
-**License:** Apache-2.0  
-**Contributing:** See CONTRIBUTING.md
-
----
-
-## What are Talons?
-
-Talons are self-contained capability extensions for FemtoClaw. Think of them like apps for your phone - they extend what FemtoClaw can do.
-
-### Quick Example
-
-```
-my-talon/
-├── TALON.md          # Manifest
-├── src/              # Source code (optional)
-└── scripts/          # Helper scripts (optional)
-```
+This repository serves as the official community hub for discovering, sharing, and developing new capabilities for the FemtoClaw ecosystem.
 
 ---
 
-## Installing Talons
+## 🏛️ What is a Talon?
+
+A **Talon** is a self-contained capability module defined by a normative manifest (`TALON.md`). It can be as simple as a configuration wrapper for a CLI tool or as complex as a compiled WebAssembly module with its own internal state.
+
+### The Grasp & Control Model
+Talons follow the same security philosophy as the core runtime:
+1.  **Grasp**: They extend the "reach" of an agent into a new system (e.g., AWS, Slack).
+2.  **Control**: They subject that interaction to strict JSON schema validation and rule-based policy enforcement.
+
+---
+
+## 🚀 Quick Installation & Usage
+
+To manage talons, use the `talon` CLI provided by the **[femtoclaw-registry](../femtoclaw-registry)** crate.
 
 ```bash
-# Install talon CLI
+# 1. Install the registry client
 cargo install femtoclaw-registry
 
-# Initialize talons directory
-talon init
+# 2. Add an official talon from the community hub
+talon add github
 
-# Add a talon
-talon add ./path/to/talon
-
-# List installed talons
-talon list
+# 3. Add a custom local talon during development
+talon add ./path/to/my-talon
 ```
+
+Once added, the new capabilities are automatically registered with your FemtoClaw agents, subject to your local authorization policies.
 
 ---
 
-## Available Talons (11 Categories)
+## 🧱 Available Talon Categories
 
-### 1. Example & Templates
+The ecosystem is organized into functional categories to help developers find the right tools for their autonomous tasks.
 
-| Talon | Description |
-|-------|-------------|
-| `example` | Template talon for creating new talons |
+### 1. Cloud & Infrastructure (IaC)
+- **`aws` / `azure` / `gcp`**: Core cloud provider integrations for managing instances, buckets, and serverless functions.
+- **`kubernetes`**: Pod inspection, deployment scaling, and log streaming.
+- **`terraform`**: Execute `plan` and `apply` operations within an authorized sandbox.
 
-### 2. Version Control
+### 2. Development & SCM
+- **`git` / `github` / `gitlab`**: Perform commits, open PRs, and manage repository issues autonomously.
+- **`terminal`**: Enhanced interactive shell features with built-in output sanitization.
 
-| Talon | Description |
-|-------|-------------|
-| `git` | Git operations - commit, push, pull, branch |
-| `github` | GitHub integration for issues, PRs, and workflows |
+### 3. Communication & Alerts
+- **`slack` / `discord` / `telegram`**: Send notifications or participate in multi-agent chat channels.
+- **`email`**: SMTP/IMAP bridge for legacy enterprise integration.
 
-### 3. Containers & Cloud
-
-| Talon | Description |
-|-------|-------------|
-| `docker` | Docker container management |
-| `kubernetes` | Kubernetes pod, deployment, and service management |
-| `aws` | AWS operations - EC2, S3, Lambda |
-
-### 4. Communication
-
-| Talon | Description |
-|-------|-------------|
-| `email` | Email sending via SMTP |
-| `slack` | Slack notifications and messaging |
-
-### 5. System & Utilities
-
-| Talon | Description |
-|-------|-------------|
-| `terminal` | Terminal utilities, process management, system info |
-| `search` | Web search, Wikipedia, news search |
-
-### 6. Database (Coming Soon)
-
-| Talon | Description |
-|-------|-------------|
-| `database` | Database query, backup, and management |
+### 4. Persistence & Search
+- **`postgres` / `mysql` / `redis`**: Direct structured data interaction.
+- **`elasticsearch`**: Vector and full-text search capabilities for long-term memory retrieval.
 
 ---
 
-## Creating Your Own Talon
+## 📐 Creating a New Talon
 
-### 1. Create the Structure
-
-```bash
-mkdir my-awesome-talon
-cd my-awesome-talon
-```
-
-### 2. Create TALON.md
+Talons are designed to be "Drafting-First." You start by defining the interface in a `TALON.md` manifest using YAML frontmatter.
 
 ```yaml
 ---
-name: my-awesome-talon
+name: industrial-sensor-bridge
 version: 1.0.0
-description: An awesome talon that does something useful
-author: Your Name
-license: MIT
-tags: [awesome, example]
----
-
-# My Awesome Talon
-
-This talon does something useful.
-
-## Commands
-
-### do-something
-Does something awesome.
-
-## Requirements
-- None
-
-## Usage
-This talon can be used to do awesome things.
-```
-
-### 3. Add Supporting Files
-
-- `src/` - Rust source code
-- `scripts/` - Shell scripts  
-- `config/` - Configuration templates
-
-### 4. Test Locally
-
-```bash
-talon add ./my-awesome-talon
-talon list
-```
-
----
-
-## Directory Structure
-
-```
-femtoclaw-talons/
-├── LICENSE              # Apache 2.0 License
-├── README.md            # This file
-├── CONTRIBUTING.md      # Contribution guidelines
-├── github/             # GitHub integration talon
-├── docker/             # Docker management talon
-├── search/             # Web search talon
-└── ...
-```
-
----
-
-## Talon Manifest Reference
-
-### Required Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `name` | string | Unique talon name (lowercase, hyphenated) |
-| `version` | string | Semantic version (e.g., 1.0.0) |
-| `description` | string | One-line description |
-
-### Optional Fields
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `author` | string | Author name |
-| `license` | string | SPDX license identifier |
-| `tags` | array | Tags for searching |
-| `repository` | string | Source repository URL |
-| `homepage` | string | Homepage URL |
-| `runtime` | object | Runtime requirements |
-| `permissions` | array | Required permissions |
-| `environment` | array | Required environment variables |
-| `commands` | array | Available commands |
-
-### Example
-
-```yaml
----
-name: example
-version: 1.0.0
-description: An example talon
-author: Your Name
-license: MIT
-tags: [example, demo]
-runtime:
-  kind: rust
-  version: ">=1.70"
-permissions:
-  - shell
-  - network
-environment:
-  - name: API_KEY
-    required: true
-    description: API key for service
+description: Authorized access to factory floor telemetry.
+author: Engineering Team
+tags: [iot, factory, automation]
 commands:
-  - name: greet
-    description: Greets the user
+  - name: get_telemetry
+    description: Fetch current sensor readings.
     args:
-      - name: name
+      - name: sensor_id
         type: string
         required: true
 ---
-
-# Example Talon
-
-This is an example talon.
+# Industrial Sensor Bridge
+Provide your documentation here.
 ```
 
----
-
-## Contributing
-
-We welcome contributions from the community!
-
-### How to Contribute
-
-1. **Fork** this repository
-2. **Create** a new talon directory
-3. **Add** your TALON.md and supporting files
-4. **Test** locally with `talon add`
-5. **Submit** a pull request
-
-### Guidelines
-
-- Follow the TALON.md format
-- Include clear documentation
-- Test your talon before submitting
-- Use Apache 2.0 license
-- Add appropriate tags
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+### Development Workflow:
+1.  **Define Interface**: Create the `TALON.md` manifest with strict argument schemas.
+2.  **Implement Logic**: Write the underlying Rust, WASM, or shell scripts.
+3.  **Local Test**: Use `talon add ./` to verify the integration in your local dev runtime.
+4.  **Audit**: Ensure the talon produces structured events compatible with `femtoclaw-audit`.
 
 ---
 
-## Security
+## 🤝 Contribution & Governance
 
-When using talons:
+We welcome community submissions! To add your talon to the official hub:
+1.  **Fork** this repository.
+2.  **Create** a new directory for your talon.
+3.  **Submit** a PR including the manifest, source, and a comprehensive `README.md` for the specific talon.
 
-- **Review** talon source code before installing
-- **Audit** environment variables and permissions
-- **Isolate** talons in production environments
-- **Update** talons regularly for security patches
-
----
-
-## Support
-
-- **Issues**: Open an issue on GitHub
-- **Discussions**: Use GitHub Discussions
-- **Discord**: Join our community
+All official talons are subject to security review by the **FemtoClaw Engineering Authority**.
 
 ---
 
-## Roadmap
+## 📄 License
+The Talon ecosystem is open-source under the **Apache License 2.0**.
 
-- [ ] Docker talon
-- [ ] GitHub Actions talon
-- [ ] Kubernetes talon
-- [ ] Database talon
-- [ ] AWS talon
-- [ ] Azure talon
-
----
-
-## License
-
-Apache License 2.0 - see [LICENSE](LICENSE) file for details.
-
-Copyright (c) 2026 FemtoClaw Community
+Copyright © 2026 FemtoClaw Project.
